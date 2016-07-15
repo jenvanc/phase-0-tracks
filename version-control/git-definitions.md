@@ -13,3 +13,5 @@ A commit is a save point in a project. When marking with a commit message, it sh
 
 * What is a merge conflict?
 A merge conflict occurs when two people make changes to the same portion of the same project and then try to merge it together.
+
+Thanks for reading! 
