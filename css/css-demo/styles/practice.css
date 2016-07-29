@@ -1,0 +1,24 @@
+
+#contact-info {
+  font-size: .8em;
+}
+
+.job {
+  background-color: #e9e5dc;
+  border-radius: 25px;
+  padding: 5px 5px 5px 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.accomplishments {
+  font-size: .8em;
+}
+
+.job h3:hover {
+  color: pink;
+}
+
+ul > li {
+  font-family: Helvetica;
+}
