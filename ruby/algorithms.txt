@@ -1,0 +1,31 @@
+Using the elevator
+-First, call the elevator
+  -Push the button on the wall next to the elevator
+    -If you want to go up floors, push the button on the top
+    -Else, push the button on the bottom
+-Once the elevator doors open, step into the elevator
+-After stepping into the elevator, find the floor panel
+  -If you want to go down floors, how many floors?
+    -Subtract that number from the floor currently on
+  -If up, how many floors?
+    -Add that to the floor already on
+  -Push button corresponding to floor level
+  -Cannot go higher than top floor or go further down then the lobby
+
+Brushing your teeth
+-First, grab toothbrush
+-Then grab toothpaste
+  -After, squeeze toothpaste onto toothbrush head (3cc of toothpaste)
+  -Once toothpaste on on brush
+      -Divide mouth into quarters
+        -Bottom left
+        -Bottom right
+        -Top left
+        -Top right
+      -Open mouth and run toothbrush over teeth
+        -Brush in circular motion for 30 seconds per quarter
+        -Total time 2 minutes
+  -Once 2 minutes are up, spit toothpaste into sink
+  -Rinse mouth with water and spit into sink
+  -Rinse sink
+  -Put toothbrush and toothpaste away in cabinet
