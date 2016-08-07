@@ -20,3 +20,17 @@ def encrypt(password)
 	end
 	password
 end
+
+def decrypt(password)
+	alphabet = "abcdefghijklmnopqrstuvwxyz"
+	count = 0
+	while count < password.length
+		if password[count] != " "
+			target_index = alphabet.index(password[count]) - 1
+			previous_letter = alphabet[target_index]
+			password[count] = previous_letter
+		end
+		count += 1
+	end
+	puts password
+end
