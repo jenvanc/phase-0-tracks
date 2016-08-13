@@ -8,3 +8,14 @@ vegetables = {
 
 p fruits
 p vegetables
+
+fruits.each { |fruit| p fruit.upcase }
+fruits.map! { |fruit| p fruit.upcase }
+
+p fruits
+
+vegetables.each do |vegetable, count|
+  puts "There are #{count + 1} #{vegetable}"
+end
+
+p vegetables
