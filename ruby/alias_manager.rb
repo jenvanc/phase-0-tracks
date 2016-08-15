@@ -57,11 +57,28 @@ def next_consonant consonant
   consonants[consonant]
 end
 
-name = 'tommy'
-name.chars.each do |char|
-  if is_vowel char
-    p next_vowel char
-  else
-    p next_consonant char
-  end
+def prompt_user
+  p 'Please enter a name. Type quit when finished.'
+  username = gets.chomp.downcase
 end
+
+usernames = {}
+
+username = prompt_user
+until username == 'quit'
+  reversed = reverse_name username
+  reversed = reversed.map do |name|
+    name = name.chars.map do |char|
+      if is_vowel char
+        next_vowel char
+      else
+        next_consonant char
+      end
+    end
+    name.join
+  end
+  usernames[reversed.join(' ')] = username
+  username = prompt_user
+end
+
+puts
