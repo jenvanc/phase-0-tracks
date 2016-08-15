@@ -62,6 +62,14 @@ def prompt_user
   username = gets.chomp.downcase
 end
 
+def style_username username
+  username = username.split(' ')
+  username = username.map do |name|
+    name.capitalize
+  end
+  username.join(' ')
+end
+
 usernames = {}
 
 username = prompt_user
@@ -75,10 +83,13 @@ until username == 'quit'
         next_consonant char
       end
     end
-    name.join
+    name.join.capitalize
   end
   usernames[reversed.join(' ')] = username
   username = prompt_user
 end
 
-puts
+usernames.keys.each do |encrypted|
+  unencrypted = style_username usernames[encrypted]
+  puts "#{encrypted} is actually #{unencrypted}"
+end
