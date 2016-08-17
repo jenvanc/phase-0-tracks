@@ -22,12 +22,47 @@ class Puppy
     "*splash*"
   end
 
+  def initialize
+    puts "Initializing new puppy instance..."
+  end
 end
 
-Mango = Puppy.new
+mango = Puppy.new
 
-p Mango.fetch("ball")
-p Mango.speak(4)
-p Mango.roll_over
-p Mango.dog_years(3)
-p Mango.swim
+p mango.fetch("ball")
+p mango.speak(4)
+p mango.roll_over
+p mango.dog_years(3)
+p mango.swim
+
+class Pokemon
+  def initialize
+    puts "Initializing new Pokemon..."
+  end
+
+  def evolve
+    "Evolved!"
+  end
+
+  def heal(integer)
+    "Healed by #{integer} points!"
+  end
+end
+
+squirtle = Pokemon.new
+p squirtle.heal(15)
+p squirtle.evolve
+
+count = 0
+pokedex = []
+
+while count < 50
+  pokemon = Pokemon.new
+  pokedex << pokemon
+  count += 1
+end
+
+pokedex.each do |pokemon|
+  p pokemon.evolve
+  p pokemon.heal(5)
+end
