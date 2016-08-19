@@ -1,6 +1,6 @@
 class Santa
-  attr_reader :age, :ethnicity
-  attr_accessor :gender
+  attr_reader :ethnicity
+  attr_accessor :gender, :age
 
   def speak
     puts "Ho, ho, ho! Haaaappy holidays!"
@@ -32,32 +32,39 @@ class Santa
   end
 end
 
-santas = []
-
 genders = [
   "agender", "female", "bigender",
   "male", "female", "gender fluid",
-  ]
+  "genderless", "intergender", "nonbinary",
+  "polygender", "transgender", "butch",
+    ]
 
 ethnicities = [
   "black", "Latino", "white",
   "Japanese-African", "Mystical Creature (unicorn)", "N/A",
+  "Bengali", "Dutch", "French",
+  "Korean", "Arabic", "Portugese"
   ]
 
-8.times do
-  santas << Santa.new(genders[rand(3)], ethnicities[rand(2)])
+# kringle = Santa.new("male", "white")
+#
+# kringle.speak
+# kringle.eat_milk_and_cookies("lemon crinkle")
+# kringle.get_mad_at("Dasher")
+# kringle.gender = "agender"
+# kringle.celebrate_birthday
+#
+# p kringle
+# p kringle.age
+# p kringle.ethnicity
+santas = []
+
+100.times do
+  santas << Santa.new(genders[rand(10)], ethnicities[rand(12)])
 end
 
-p santas
-
-kringle = Santa.new("male", "white")
-
-kringle.speak
-kringle.eat_milk_and_cookies("lemon crinkle")
-kringle.get_mad_at("Dasher")
-kringle.gender = "agender"
-kringle.celebrate_birthday
-
-p kringle
-p kringle.age
-p kringle.ethnicity
+santas.each do |santa|
+  santa.age = rand(200)
+  puts "This santa is #{santa.age} years old."
+  puts "This santa is #{santa.gender} and #{santa.ethnicity}"
+end
