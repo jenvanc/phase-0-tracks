@@ -1,4 +1,7 @@
 class Santa
+  attr_reader :age, :ethnicity
+  attr_accessor :gender
+
   def speak
     puts "Ho, ho, ho! Haaaappy holidays!"
   end
@@ -26,18 +29,6 @@ class Santa
   def get_mad_at(reindeer)
     placement = @reindeer_ranking.index(reindeer)
     @reindeer_ranking.insert(-1, @reindeer_ranking.delete_at(placement))
-  end
-
-  def gender=(new_gender)
-    @gender = new_gender
-  end
-
-  def age
-    @age
-  end
-
-  def ethnicity
-    @ethnicity
   end
 end
 
