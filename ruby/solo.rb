@@ -63,7 +63,7 @@ until user_response == "done"
       fur_color = gets.chomp
 
       puts "What is #{name}'s favorite toy?"
-      toy= gets.chomp
+      favorite_toy= gets.chomp
 
       cats << Cat.new(name, age, fur_color)
     end
@@ -71,6 +71,6 @@ end
 
 puts "Here is the information about the cats you entered:"
 cats.each do |cat|
-  puts "#{name} is #{age}, their fur color is #{fur_color} and their
-  favorite toy is #{toy}"
+  puts "#{cat.name} is #{cat.age}, their fur color is #{cat.fur_color} and their
+  favorite toy is #{cat.favorite_toy}"
 end
