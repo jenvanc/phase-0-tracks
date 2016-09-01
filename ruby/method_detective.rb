@@ -8,6 +8,7 @@
 # => “InVeStIgAtIoN”
 
 "zom".insert(1, "o")
+"zom".insert(2, "o")
 # => “zoom”
 
 "enhance".center(50)
@@ -32,9 +33,11 @@
 
 "The mystery of the missing first letter".delete("T")
 "The mystery of the missing first letter".slice(1..-1)
+"The mystery of the missing first letter"
 # => "he mystery of the missing first letter"
 
 "Elementary,    my   dear        Watson!".squeeze
+"Elementary,    my   dear        Watson!".join(" ")
 # => "Elementary, my dear Watson!"
 
 "z".ord
