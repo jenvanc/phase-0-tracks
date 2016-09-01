@@ -1,44 +1,66 @@
-fruits = ["banana", "apple", "pear", "grapes"]
-vegetables = {
-  potato: 2,
-  carrot: 3,
-  asparagus: 1,
-  cucumber: 5,
+def convo
+	puts "how are you?"
+	yield("Chillin", "Kickin it")
+	puts "thats good."
+end
+convo { |activity1, activity2| puts "Im good! #{activity1}! #{activity2}!"}
+
+movie_stars = {
+	"Harrison Ford" => "Indiana Jones" ,
+	"Sean Connery" => "James Bond" ,
+	"Daniel Radcliffe" => "Harry Potter" ,
+	"Emma Watson" => "Hermione Granger" ,
+	"Tom Hanks" => "Woody"
 }
+furniture = ["table", "chair", "wardrobe", "dresser"]
 
-p fruits
-p vegetables
-
-fruits.each { |fruit| p fruit.upcase }
-fruits.map! { |fruit| p fruit.upcase }
-
-p fruits
-
-vegetables.each do |vegetable, count|
-  puts "There are #{count + 1} #{vegetable}"
+movie_stars.each do |actor, character|
+	puts "#{actor} is best known for playing #{character}."
 end
 
-p vegetables
+furniture.each do |item|
+	puts "I want a #{item}."
+end
 
-numbers_array = [1, 2, 3, 4, 5, 6]
+p furniture
 
-numbers_hash = {
-  one: 1,
-  two: 2,
-  three: 3,
-  four: 4,
-  five: 5,
-  six: 6,
+furniture.map! do |item|
+	p item.upcase
+end
+
+p furniture
+
+numbers = {
+	one: 1,
+	two: 2,
+	three: 3,
+	four: 4,
+	five: 5
 }
+other_numbers = [6,7,8,9]
 
-p numbers_array.delete_if { |integer| integer < 2 }
-p numbers_hash.delete_if { |word, integer| integer > 5}
 
-p numbers_array.select { |integer| integer.even? }
-p numbers_hash.select { |word, integer| integer.even? }
 
-p numbers_array.keep_if { |integer| integer.odd?}
-p numbers_hash.keep_if { |word, integer| word == :four }
+numbers.delete_if {|word, integer| integer < 2 }
+p numbers
 
-p numbers_array.reject { |integer| integer < 5 }
-p numbers_hash.reject { |word, integer| word == :four }
+other_numbers.delete_if {|integer| integer < 7 }
+p other_numbers
+
+numbers.keep_if {|word, integer| integer > 2 }
+p numbers
+
+other_numbers.keep_if {|integer| integer < 9 }
+p other_numbers
+
+numbers.select! {|word, integer| integer != 4}
+p numbers
+
+other_numbers.select! {|integer| integer.even? }
+p other_numbers
+
+numbers.reject! {|word, integer| integer == 3 }
+p numbers
+
+other_numbers.reject! {|integer| integer.even? }
+p other_numbers
