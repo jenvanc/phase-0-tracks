@@ -1,11 +1,14 @@
-# We need to write a program that will allow an interiror designer
-# to keep track of a client
+# Ask designer for the client's name, age, number of childern, decor theme and
+# if they have red carpet
+#  - save name, address, age, number of children, decor theme and red carpet
+#     as keys to a hash, user input saves as value
+# Print user input
+# Ask user if they would like to update any of the info
+#   - if yes, change appropriate value in hash
+# Print updated information
 
-# Name, Age, # Of Children, Decor Theme, Etc
-# to_sym
-
-def is_true response
-  if response == "yes"
+def is_true(user_input)
+  if user_input == "yes"
     true
   else
     false
@@ -14,11 +17,11 @@ end
 
 client_info = {}
 
-puts "What is your client's name?"
+puts "What is the client's name?"
 client_info[:name] = gets.chomp
 
-puts "What is your age?"
-client_info[:age] = gets.chomp.to_i
+puts "What is the client's age?"
+client_info[:age] = gets.chomp
 
 puts "How many children do you have?"
 client_info[:children] = gets.chomp.to_i
@@ -26,22 +29,5 @@ client_info[:children] = gets.chomp.to_i
 puts "What is your decor theme?"
 client_info[:theme] = gets.chomp
 
-puts "Do you have wood trim?"
-client_info[:wood_trim] = is_true gets.chomp
-
-puts "do you have glass walls?"
-client_info[:glass_walls] = is_true gets.chomp
-
-puts client_info
-
-puts "Would you like to update some of this information?"
-client_info.keys.each { |info| puts info.to_s  }
-puts "none"
-
-user_input = gets.chomp
-
-unless user_input == "none"
-  puts "enter new value"
-  client_info[user_input.to_sym] = gets.chomp
-  puts client_info
-end
+puts "Do you have red carpet? Please respond yes or no."
+client_info[:carpet] = is_true gets.chomp
