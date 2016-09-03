@@ -38,8 +38,8 @@ puts "Here is your client's information"
   end
 
 puts "Would you like to update any of this information?
-      Please type the name of the category you wish to update.
-      If not, please type 'none'."
+Please type the name of the category you wish to update.
+If not, please type 'none'."
 input = gets.chomp
 
 unless input == "none"
