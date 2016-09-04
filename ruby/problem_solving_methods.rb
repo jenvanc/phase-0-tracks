@@ -32,9 +32,6 @@ p fib(100)[-1] == 218922995834555169026
 # 2. Insertion Sort
 # 3. Selection Sort
 
-
-# Let's do da pseudo
-
 def bubble_sort(array)
   count = array.length
   loop do
@@ -66,4 +63,22 @@ end
 
 array = [2, 6, 4, 8, 1]
 insertion_sort(array)
+p array
+
+def selection_sort(array)
+  array.each_index do |index|
+    smallest_index = index
+    for i in (index + 1)..(array.length - 1)
+      if array[i] < array[smallest_index]
+        smallest_index = i
+      end
+    end
+    if smallest_index != index
+      array[index], array[smallest_index] = array[smallest_index], array[index]
+    end
+  end
+end
+
+array = [2, 5, 7, 1, 3, 9]
+selection_sort(array)
 p array
