@@ -31,6 +31,16 @@ def next_consonant(consonant)
   consonants[index]
 end
 
+def style_user_input(user_input)
+  name = user_input.split(' ')
+  name.map! do |name|
+    name.capitalize
+  end
+  name.join(' ')
+end
+
+encrypted_names = {}
+
 puts "Please enter a name you would like to encrypt. Type 'quit' when finished."
 user_input = gets.chomp.downcase
 
@@ -40,8 +50,15 @@ until user_input == 'quit'
     name = name.chars.map! do |letter|
       letter = next_letter(letter)
     end
-    name.join('')
+    name.join('').capitalize
   end
-  p backwards_name.join(' ').capitalize
+  backwards_name = backwards_name.join(' ')
+  user_input = style_user_input(user_input)
+  encrypted_names[user_input] = backwards_name
+  p backwards_name
   user_input = gets.chomp.downcase
+end
+
+encrypted_names.each do |real_name, encoded_name|
+  puts "#{encoded_name} is actually #{real_name}."
 end
