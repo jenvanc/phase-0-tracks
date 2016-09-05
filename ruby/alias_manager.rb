@@ -1,95 +1,72 @@
-# - Downcase name #downcase
-# - Split fist and last names into different strings #split
-# - Swap first and last name using #reverse
-# - Split letters into array
-# - Variable for vowels "aeioua"
-# - Variable for consanants "bcdfghjklmnpqrstvwxyzb"
-# - Move vowels down one down vowels variable
-# - Move consanants down one on consanant variable
-# - Leave spaces as-is
-# - Caplitalize name #capitalize
-# - Join letters back together and save as new variable
-
-def reverse_name name
-  name_array = name.split(' ')
-  name_array.reverse!
+def reverse_name(string)
+  array = string.split()
+  array.reverse!
 end
 
-def next_vowel vowel
-  vowels = {
-    'a' => 'e',
-    'e' => 'i',
-    'i' => 'o',
-    'o' => 'u',
-    'u' => 'a'
-  }
-  vowels[vowel]
+def next_letter(letter)
+  vowels = ["a", "e", "i", "o", "u"]
+  if vowels.include? letter
+    next_vowel(letter)
+  else
+    next_consonant(letter)
+  end
 end
 
-def is_vowel letter
-  vowels = ['a', 'e', 'i', 'o', 'u']
-  vowels.include? letter
+def next_vowel(vowel)
+  vowels = ["a", "e", "i", "o", "u"]
+  index = vowels.index(vowel) + 1
+  if index == vowels.length
+    index = 0
+  end
+  vowels[index]
 end
 
-def next_consonant consonant
-  consonants = {
-    'b' => 'c',
-    'd' => 'f',
-    'f' => 'g',
-    'g' => 'h',
-    'h' => 'j',
-    'j' => 'k',
-    'k' => 'l',
-    'l' => 'm',
-    'm' => 'n',
-    'n' => 'p',
-    'p' => 'q',
-    'q' => 'r',
-    'r' => 's',
-    's' => 't',
-    't' => 'v',
-    'v' => 'w',
-    'w' => 'x',
-    'x' => 'y',
-    'y' => 'z',
-    'z' => 'b'
-  }
-  consonants[consonant]
+def next_consonant(consonant)
+  consonants = ["b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "n", "p", "q",
+                "r", "s", "t", "v", "w", "x", "y", "z"]
+  index = consonants.index(consonant) + 1
+  if index == consonants.length
+    index = 0
+  end
+  consonants[index]
 end
 
-def prompt_user
-  p 'Please enter a name. Type quit when finished.'
-  username = gets.chomp.downcase
-end
-
-def style_username username
-  username = username.split(' ')
-  username = username.map do |name|
+def style_user_input(user_input)
+  name = user_input.split(' ')
+  name.map! do |name|
     name.capitalize
   end
-  username.join(' ')
+  name.join(' ')
 end
 
-usernames = {}
-
-username = prompt_user
-until username == 'quit'
-  reversed = reverse_name username
-  reversed = reversed.map do |name|
-    name = name.chars.map do |char|
-      if is_vowel char
-        next_vowel char
-      else
-        next_consonant char
-      end
+def encode_name(name)
+  backwards_name = reverse_name(name)
+  backwards_name.map! do |name|
+    name = name.chars.map do |letter|
+      letter = next_letter(letter)
     end
-    name.join.capitalize
+    name.join('').capitalize
   end
-  usernames[reversed.join(' ')] = username
-  username = prompt_user
+  backwards_name = backwards_name.join(' ')
 end
 
-usernames.keys.each do |encrypted|
-  unencrypted = style_username usernames[encrypted]
-  puts "#{encrypted} is actually #{unencrypted}"
+def print_encrypted_names(names)
+  names.each do |real_name, encoded_name|
+    puts "#{encoded_name} is actually #{real_name}."
+  end
 end
+
+encrypted_names = {}
+
+puts "Please enter a name you would like to encrypt. Type 'quit' when finished."
+user_input = gets.chomp.downcase
+
+until user_input == 'quit'
+  encoded_name = encode_name(user_input)
+  user_input = style_user_input(user_input)
+  encrypted_names[user_input] = encoded_name
+  p encoded_name
+  user_input = gets.chomp.downcase
+end
+
+print_encrypted_names(encrypted_names)
