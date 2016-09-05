@@ -39,26 +39,34 @@ def style_user_input(user_input)
   name.join(' ')
 end
 
+def encode_name(name)
+  backwards_name = reverse_name(name)
+  backwards_name.map! do |name|
+    name = name.chars.map do |letter|
+      letter = next_letter(letter)
+    end
+    name.join('').capitalize
+  end
+  backwards_name = backwards_name.join(' ')
+end
+
+def print_encrypted_names(names)
+  names.each do |real_name, encoded_name|
+    puts "#{encoded_name} is actually #{real_name}."
+  end
+end
+
 encrypted_names = {}
 
 puts "Please enter a name you would like to encrypt. Type 'quit' when finished."
 user_input = gets.chomp.downcase
 
 until user_input == 'quit'
-  backwards_name = reverse_name(user_input)
-  backwards_name.map! do |name|
-    name = name.chars.map! do |letter|
-      letter = next_letter(letter)
-    end
-    name.join('').capitalize
-  end
-  backwards_name = backwards_name.join(' ')
+  encoded_name = encode_name(user_input)
   user_input = style_user_input(user_input)
-  encrypted_names[user_input] = backwards_name
-  p backwards_name
+  encrypted_names[user_input] = encoded_name
+  p encoded_name
   user_input = gets.chomp.downcase
 end
 
-encrypted_names.each do |real_name, encoded_name|
-  puts "#{encoded_name} is actually #{real_name}."
-end
+print_encrypted_names(encrypted_names)
