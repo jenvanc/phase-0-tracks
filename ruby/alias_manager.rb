@@ -1,6 +1,15 @@
 def reverse_name(string)
   array = string.split()
-  array.reverse!.join(' ')
+  array.reverse!
+end
+
+def next_letter(letter)
+  vowels = ["a", "e", "i", "o", "u"]
+  if vowels.include? letter
+    next_vowel(letter)
+  else
+    next_consonant(letter)
+  end
 end
 
 def next_vowel(vowel)
@@ -20,4 +29,19 @@ def next_consonant(consonant)
     index = 0
   end
   consonants[index]
+end
+
+puts "Please enter a name you would like to encrypt. Type 'quit' when finished."
+user_input = gets.chomp.downcase
+
+until user_input == 'quit'
+  backwards_name = reverse_name(user_input)
+  backwards_name.map! do |name|
+    name = name.chars.map! do |letter|
+      letter = next_letter(letter)
+    end
+    name.join('')
+  end
+  p backwards_name.join(' ').capitalize
+  user_input = gets.chomp.downcase
 end
