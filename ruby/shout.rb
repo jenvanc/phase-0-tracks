@@ -21,18 +21,18 @@ module Shout
   end
 end
 
-class Parent
+class Republican
   include Shout
 end
 
-class Child
+class Democrat
   include Shout
 end
 
-mom = Parent.new
-p mom.yell_angrily("Clean up your room")
-p mom.yelling_happily("You got an 'A'")
+clinton = Democrat.new
+p clinton.yell_angrily("Temper, temper, temper")
+p clinton.yelling_happily("I won the nomination")
 
-daughter = Child.new
-p daughter.yell_angrily("I can't believe you grounded me")
-p daughter.yelling_happily("I got a date to Prom")
+trump = Republican.new
+p trump.yell_angrily("There’s nobody bigger or better at the military than I am")
+p trump.yelling_happily("Make America great again")
