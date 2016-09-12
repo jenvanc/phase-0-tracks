@@ -9,10 +9,10 @@ class Hangman
   def show_progress
     progress = ""
     @secret_word.each_char do |letter|
-      if guessed_letter.include? letter
+      if @guessed_letters.include?(letter)
         progress += letter
       else
-        progress += "_"
+        progress += "_ "
       end
     end
     progress
@@ -20,7 +20,7 @@ class Hangman
 
   def set_secret_word(word)
     @secret_word = word
-    @total_guesses = @secret_word.length
+    @total_guesses = @secret_word.length - 1
   end
 
   def guess_letter(letter)
@@ -31,7 +31,5 @@ class Hangman
       puts "Oops! You already guessed that letter. Please guess again."
     end
   end
-
-  def
 
 end
