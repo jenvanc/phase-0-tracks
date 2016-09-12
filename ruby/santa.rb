@@ -43,3 +43,29 @@ nick.gender = "male"
 
 p nick.age
 p nick
+
+genders = [
+  "agender", "female", "bigender",
+  "male", "female", "gender fluid",
+  "genderless", "intergender", "nonbinary",
+  "polygender", "transgender", "butch",
+  ]
+
+ethnicities = [
+  "black", "Latino", "white",
+  "Japanese-African", "Mystical Creature (unicorn)", "N/A",
+  "Bengali", "Dutch", "French",
+  "Korean", "Arabic", "Portugese"
+  ]
+
+santas = []
+
+100.times do
+  santas << Santa.new(genders[rand(11)], ethnicities[rand(13)])
+end
+
+santas.each do |santa|
+  santa.age = rand(141)
+  puts "This santa is #{santa.age} years old."
+  puts "This santa is #{santa.gender} and #{santa.ethnicity}"
+end
