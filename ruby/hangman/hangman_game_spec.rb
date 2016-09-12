@@ -10,7 +10,7 @@ describe Hangman do
 
   it "sets total guesses" do
     hangman.set_secret_word("hello")
-    expect(hangman.total_guesses).to eq 4
+    expect(hangman.total_guesses).to eq 7
   end
 
   it "shows the progress(empty)" do
@@ -24,4 +24,12 @@ describe Hangman do
     hangman.guess_letter("o")
     expect(hangman.show_progress).to eq "h_ _ _ o"
   end
+
+  it "shows the progress (complete)" do
+    hangman.set_secret_word("too")
+    hangman.guess_letter("t")
+    hangman.guess_letter("o")
+    expect(hangman.show_progress).to eq "too"
+  end
+
 end
