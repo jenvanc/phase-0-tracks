@@ -1,10 +1,12 @@
 class Hangman
   attr_reader :guess_count, :secret_word, :guessed_letters, :total_guesses, :is_over
 
-  def initialize
+  def initialize(word)
     @guess_count = 0
     @guessed_letters = []
     @is_over = false
+    @secret_word = word
+    @total_guesses = (@secret_word.length * 1.5).floor
   end
 
   def progress
@@ -17,11 +19,6 @@ class Hangman
       end
     end
     progress
-  end
-
-  def set_secret_word(word)
-    @secret_word = word
-    @total_guesses = (@secret_word.length * 1.5).floor
   end
 
   def guess_letter(letter)
@@ -47,11 +44,9 @@ class Hangman
 end
 
 puts "Let's play hangman!"
-game = Hangman.new
-
 puts "Player 1, please input a word for Player 2 to guess."
 word = gets.chomp.downcase
-game.set_secret_word(word)
+game = Hangman.new(word)
 game.print_progress(game.progress)
 
 while !game.is_over
