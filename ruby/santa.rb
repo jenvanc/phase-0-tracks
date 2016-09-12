@@ -1,14 +1,6 @@
 class Santa
+  attr_accessor :age, :gender
   attr_reader :ethnicity
-  attr_accessor :gender, :age
-
-  def speak
-    puts "Ho, ho, ho! Haaaappy holidays!"
-  end
-
-  def eat_milk_and_cookies(cookie)
-    puts "That was a good #{cookie}."
-  end
 
   def initialize(gender, ethnicity)
     puts "Initializing Santa instance..."
@@ -22,22 +14,42 @@ class Santa
     @age = 0
   end
 
+  def speak
+    puts "Ho, ho, ho! Haaaappy holidays!"
+  end
+
+  def eat_milk_and_cookies(cookie)
+    puts "That was a good #{cookie}."
+  end
+
   def celebrate_birthday
     @age += 1
   end
 
   def get_mad_at(reindeer)
-    placement = @reindeer_ranking.index(reindeer)
-    @reindeer_ranking.insert(-1, @reindeer_ranking.delete_at(placement))
+    @reindeer_ranking.delete(reindeer)
+    @reindeer_ranking << reindeer
   end
+
 end
+
+nick = Santa.new("female", "Arabic")
+p nick
+nick.speak
+nick.celebrate_birthday
+nick.eat_milk_and_cookies("sugar cookie")
+nick.get_mad_at("Dancer")
+nick.gender = "male"
+
+p nick.age
+p nick
 
 genders = [
   "agender", "female", "bigender",
   "male", "female", "gender fluid",
   "genderless", "intergender", "nonbinary",
   "polygender", "transgender", "butch",
-    ]
+  ]
 
 ethnicities = [
   "black", "Latino", "white",
@@ -46,25 +58,14 @@ ethnicities = [
   "Korean", "Arabic", "Portugese"
   ]
 
-# kringle = Santa.new("male", "white")
-#
-# kringle.speak
-# kringle.eat_milk_and_cookies("lemon crinkle")
-# kringle.get_mad_at("Dasher")
-# kringle.gender = "agender"
-# kringle.celebrate_birthday
-#
-# p kringle
-# p kringle.age
-# p kringle.ethnicity
 santas = []
 
 100.times do
-  santas << Santa.new(genders[rand(10)], ethnicities[rand(12)])
+  santas << Santa.new(genders[rand(11)], ethnicities[rand(13)])
 end
 
 santas.each do |santa|
-  santa.age = rand(200)
+  santa.age = rand(141)
   puts "This santa is #{santa.age} years old."
   puts "This santa is #{santa.gender} and #{santa.ethnicity}"
 end
