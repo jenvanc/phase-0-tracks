@@ -1,0 +1,9 @@
+Class Hangman
+
+Create a method to set the word to guess from user 1
+Create a method that compares user 2 input to word from user 1
+Create a method that determines the number of guesses, length -2
+Create a data structure that saves user 2 guesses
+  - Compare guesses to data past guesses and does not count duplicates
+Print out current results of guessing after each guess from user 2
+If user 2 fails to identify word, taunting message or congratulatory if they win
