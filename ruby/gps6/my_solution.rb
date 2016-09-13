@@ -39,7 +39,7 @@ class VirusPredictor
       multiplier = 0.05
     end
     number_of_deaths = (population * multiplier).floor
-    
+
     print "#{@state} will lose #{number_of_deaths} people in this outbreak"
 
   end
@@ -92,3 +92,16 @@ end
 
 #=======================================================================
 # Reflection Section
+-# In the state_data file you see symbols and strings used as keys for accessing
+-# the vaules stored the hash. The string allows you to use a hash rocket (=>)
+-# where symbols allow you to use colons to designate keys.
+-# require_relative requests a relative path to the file that it required instead
+-# of providing the absolute path to the file.
+-# You can iterate through a hash with the keys, but you need to include a block
+-# for the value, even if it doesn't show in the iteration.
+-# The variables do not need to be declared because they are accessable anywhere
+-# within the class @ in front of the variable name allows that.
+-# More iteration practice is always welcome as I still sometimes struggle with
+-# stringing all the parts together. It was also just helpful to look at some code
+-# that is already pretty well put together and disect it, see how to make it better
+-# and look at how it is structed.
