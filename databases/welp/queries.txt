@@ -1,0 +1,52 @@
+1. You've joined two tables before. How do you join three?
+INPUT :
+SELECT * FROM businesses, users, reviews
+   ...> WHERE businesses.id = reviews.business_id
+   ...> AND users.id = reviews.user_id ;
+
+OUTPUT :
+1|Grundy Hollow Wedding Chapel|2|Mandy|Kaling|1|3|Elvis was drunk, but sang beautifully|1|2
+3|The Beagle Nightclub|1|Bradford|Pitt|2|5|This is the best nightclub ever|3|1
+2|Amir's Towing|3|Angela|Jolie|3|1|Took forever to get into my car|2|3
+
+
+
+2. There are some repetitive columns if we choose to view all fields. Choose instead to just view the user's names, the business name, the star rating, and the comment.
+INPUT:
+SELECT
+   ...> first_name,
+   ...> last_name,
+   ...> name,
+   ...> stars,
+   ...> comment
+   ...> FROM
+   ...> businesses, users, reviews
+   ...> WHERE businesses.id = reviews.business_id
+   ...> AND users.id = reviews.user_id ;
+
+OUTPUT:
+Mandy|Kaling|Grundy Hollow Wedding Chapel|3|Elvis was drunk, but sang beautifully
+Bradford|Pitt|The Beagle Nightclub|5|This is the best nightclub ever
+Angela|Jolie|Amir's Towing|1|Took forever to get into my car
+
+3. How do you view the data of all three tables for just one particular business?
+INPUT:
+SELECT * FROM businesses, users, reviews
+   ...> WHERE businesses.id = reviews.business_id
+   ...> AND users.id = reviews.user_id
+   ...> AND businesses.id = 1 ;
+
+OUTPUT:
+1|Grundy Hollow Wedding Chapel|2|Mandy|Kaling|1|3|Elvis was drunk, but sang beautifully|1|2
+
+AND
+
+INPUT:
+SELECT users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment
+   ...> FROM users INNER JOIN
+   ...> (businesses INNER JOIN reviews ON businesses.id = reviews.business_id)
+   ...> ON users.id = reviews.user_id
+   ...> WHERE businesses.name="Amir's Towing";
+
+OUTPUT:
+Angela|Jolie|Amir's Towing|1|Took forever to get into my car
