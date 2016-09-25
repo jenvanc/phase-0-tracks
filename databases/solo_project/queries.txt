@@ -51,3 +51,7 @@ LeAnn|Jane
 Quinn|Sally
 Gina|Hayley
 Raplh|Jane
+
+---INPUT: SELECT * FROM children, mom WHERE children.mom_id = mom.id AND mom.id = 2;
+---OUTPUT:
+3|LeAnn|18|F|2|2|Jane|56
