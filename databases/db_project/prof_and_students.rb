@@ -1,15 +1,7 @@
 require 'sqlite3'
-require 'faker'
 
 db = SQLite3::Database.new("semester.db")
 db.results_as_hash = true
-
-create_prof_table = <<-SQL
-  CREATE TABLE IF NOT EXISTS professors (
-    id INTEGER PRIMARY KEY,
-    name VARCHAR(255)
-  )
-SQL
 
 create_student_table = <<-SQL
   CREATE TABLE IF NOT EXISTS students (
@@ -32,14 +24,11 @@ create_enrollment_table = <<-SQL
     id INTEGER PRIMARY KEY,
     class_id INT,
     student_id INT,
-    prof_id INT,
     FOREIGN KEY(class_id) REFERENCES classes(id),
-    FOREIGN KEY(student_id) REFERENCES students(id),
-    FOREIGN KEY(prof_id) REFERENCES professors(id)
+    FOREIGN KEY(student_id) REFERENCES students(id)
   )
 SQL
 
-db.execute(create_prof_table)
 db.execute(create_class_table)
 db.execute(create_student_table)
 db.execute(create_enrollment_table)
@@ -52,27 +41,16 @@ def create_course(db, course_num, subject)
   db.execute("INSERT INTO classes (course_num, subject) VALUES (?, ?)", [course_num, subject])
 end
 
-#create courses for students
-# 10.times do
-#   n = rand(100..999)
-#   create_course(db, n, subjects.sample)
-# end
-
-def create_prof(db, name)
-  db.execute("INSERT INTO professors (name) VALUES (?)", [name])
+def get_course_listing(db)
+  db.execute("SELECT id FROM classes")
 end
-
-#create professors
-# 5.times do
-#   create_prof(db, Faker::Name.name)
-# end
 
 def register_student(db, name, age)
   db.execute("INSERT INTO students (name, age) VALUES (?, ?)", [name, age])
 end
 
 def get_student_id(db, name, age)
-  db.execute("SELECT id FROM students WHERE name=? AND age=?", [name, age])
+  db.execute("SELECT * FROM students WHERE name=? AND age=?", [name, age])
 end
 
 def class_options(db, student_id)
@@ -88,15 +66,26 @@ def class_options(db, student_id)
   db.execute(statement, student_id)
 end
 
+# create course
+10.times do
+  create_course(db, rand(100..999), subjects.sample)
+end
+
 puts "Welcome to the Enroll-o-matic at Get-Smart University!"
 puts "What is your name?"
 name = gets.chomp
 puts "Whats is your age?"
 age = gets.chomp.to_i
 
-# register_student(db, name, age)
+register_student(db, name, age)
 student = get_student_id(db, name, age).first
 
 puts "Your student id is #{student["id"]}"
+puts "\nSelect a class"
 
-puts class_options(db, student["id"])
+classes = class_options(db, student["id"])
+
+classes.each_index do |i|
+  c = classes[i]
+  puts "#{i}. #{c["subject"].upcase} #{c["course_num"]}"
+end
