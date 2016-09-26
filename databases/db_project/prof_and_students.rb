@@ -2,7 +2,7 @@ require 'sqlite3'
 require 'faker'
 
 db = SQLite3::Database.new("semester.db")
-
+db.results_as_hash = true
 
 create_prof_table = <<-SQL
   CREATE TABLE IF NOT EXISTS professors (
@@ -52,6 +52,7 @@ def create_course(db, course_num, subject)
   db.execute("INSERT INTO classes (course_num, subject) VALUES (?, ?)", [course_num, subject])
 end
 
+#create courses for students
 # 10.times do
 #   n = rand(100..999)
 #   create_course(db, n, subjects.sample)
@@ -61,6 +62,7 @@ def create_prof(db, name)
   db.execute("INSERT INTO professors (name) VALUES (?)", [name])
 end
 
+#create professors
 # 5.times do
 #   create_prof(db, Faker::Name.name)
 # end
@@ -73,6 +75,19 @@ def get_student_id(db, name, age)
   db.execute("SELECT id FROM students WHERE name=? AND age=?", [name, age])
 end
 
+def class_options(db, student_id)
+  statement = <<-SQL
+    SELECT  classes.id,
+            classes.subject,
+            classes.course_num
+    FROM    students,
+            classes LEFT OUTER JOIN enrollment ON students.id != enrollment.student_id
+    WHERE   students.id =?
+  SQL
+
+  db.execute(statement, student_id)
+end
+
 puts "Welcome to the Enroll-o-matic at Get-Smart University!"
 puts "What is your name?"
 name = gets.chomp
@@ -80,6 +95,8 @@ puts "Whats is your age?"
 age = gets.chomp.to_i
 
 # register_student(db, name, age)
-student_id = get_student_id(db, name, age).first
+student = get_student_id(db, name, age).first
 
-puts "Your student id is #{student_id}"
+puts "Your student id is #{student["id"]}"
+
+puts class_options(db, student["id"])
