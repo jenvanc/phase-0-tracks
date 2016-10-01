@@ -29,8 +29,8 @@ get '/students/search' do
   erb :search
 end
 
-post 'students/search/results' do
-  @student = db.execute("SELECT * FROM students WHERE name=?", [params['name']])
+post '/students/search/results' do
+  @student = db.execute("SELECT * FROM students WHERE name='#{params['name']}'")
   p @student
   erb :search_results
 end
