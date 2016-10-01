@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Search results</title>
+  </head>
+  <body>
+    <h1>Search results:</h1>
+      <p>
+        <% @student.each do |student| %>
+        Name: <%= student['name'] %>
+        Campus: <%= student['campus'] %>
+        Age: <%= student['age'] %>
+          <% end %>
+      </p>
+  </body>
+</html>
